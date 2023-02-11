@@ -36,6 +36,7 @@ public class servicio extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         lblName = new javax.swing.JLabel();
         lblGender = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -45,7 +46,7 @@ public class servicio extends javax.swing.JPanel {
         lblTemp.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblTemp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTemp.setText("00:00 Segundos");
-        jPanel1.add(lblTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 780, 38));
+        jPanel1.add(lblTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 780, 38));
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -60,7 +61,7 @@ public class servicio extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -75,13 +76,16 @@ public class servicio extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
 
         lblName.setText("jLabel1");
-        jPanel1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 220, 30));
+        jPanel1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 220, 30));
 
         lblGender.setText("jLabel1");
-        jPanel1.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 220, 30));
+        jPanel1.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 220, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\garib\\OneDrive\\Escritorio\\fdf.png")); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 280));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 780, 280));
     }// </editor-fold>//GEN-END:initComponents
@@ -129,6 +133,7 @@ public class servicio extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

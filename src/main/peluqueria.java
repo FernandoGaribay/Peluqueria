@@ -1,5 +1,8 @@
 package main;
 
+import java.awt.GridLayout;
+import javax.swing.JScrollPane;
+
 public class peluqueria extends javax.swing.JFrame {
 
     private FilaClientes fila = new FilaClientes();
@@ -155,7 +158,7 @@ public class peluqueria extends javax.swing.JFrame {
                 pnlContenedorComponentRemoved(evt);
             }
         });
-        pnlContenedor.setLayout(new javax.swing.BoxLayout(pnlContenedor, javax.swing.BoxLayout.Y_AXIS));
+        pnlContenedor.setLayout(new java.awt.GridLayout(1, 1));
         jScrollPane1.setViewportView(pnlContenedor);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
@@ -168,7 +171,7 @@ public class peluqueria extends javax.swing.JFrame {
         if (fila.getQueue().isEmpty()) {
             return;
         }
-        if(Integer.parseInt(lblCantBarberos.getText()) < 1){
+        if (Integer.parseInt(lblCantBarberos.getText()) < 1) {
             return;
         }
 
@@ -179,6 +182,18 @@ public class peluqueria extends javax.swing.JFrame {
 
         lblCantClientes.setText(String.valueOf(fila.getQueue().size()));
         lblCantBarberos.setText(String.valueOf(Integer.parseInt(lblCantBarberos.getText()) - 1));
+
+        int componentes = pnlContenedor.getComponentCount();
+        if (componentes < 3) {
+            GridLayout layout = new GridLayout(pnlContenedor.getComponentCount() + 1, 1);
+            jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+            pnlContenedor.setLayout(layout);
+        } else {
+            GridLayout layout = new GridLayout(pnlContenedor.getComponentCount(), 1);
+            jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            pnlContenedor.setLayout(layout);
+        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -186,7 +201,7 @@ public class peluqueria extends javax.swing.JFrame {
 
         cliente.setName(this.txtName.getText());
         cliente.setGender(this.cbGender.getSelectedItem().toString());
-        fila.add(cliente);
+        fila.getQueue().add(cliente);
 
         lblCantClientes.setText(String.valueOf(fila.getQueue().size()));
         System.out.println(fila.getQueue());

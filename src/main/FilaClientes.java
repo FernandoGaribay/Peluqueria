@@ -10,14 +10,7 @@ public class FilaClientes {
         queue = new LinkedList<>();
     }
 
-    public void add(Cliente e) {
-        queue.add(e);
-    }
 
-    public Cliente remove(Cliente e) {
-         Cliente client = queue.remove();
-         return client;
-    }
 
     public Queue<Cliente> getQueue() {
         return queue;
