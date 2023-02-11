@@ -1,7 +1,9 @@
 package main;
 
 import java.awt.GridLayout;
+import java.util.Random;
 import javax.swing.JScrollPane;
+import javax.swing.SpinnerNumberModel;
 
 public class peluqueria extends javax.swing.JFrame {
 
@@ -82,6 +84,11 @@ public class peluqueria extends javax.swing.JFrame {
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 110, 40));
 
         jButton2.setText("Generar datos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 110, 40));
 
         pnlBotones.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 360, -1));
@@ -91,6 +98,7 @@ public class peluqueria extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         spnMin.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        spnMin.setModel(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
         spnMin.setValue(5);
         jPanel5.add(spnMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 360, 30));
 
@@ -109,6 +117,7 @@ public class peluqueria extends javax.swing.JFrame {
         jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 20));
 
         spnMax.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        spnMax.setModel(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
         spnMax.setValue(15);
         jPanel6.add(spnMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 360, 30));
 
@@ -204,7 +213,7 @@ public class peluqueria extends javax.swing.JFrame {
         fila.getQueue().add(cliente);
 
         lblCantClientes.setText(String.valueOf(fila.getQueue().size()));
-        System.out.println(fila.getQueue());
+        this.variarCampos();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -215,6 +224,25 @@ public class peluqueria extends javax.swing.JFrame {
     private void pnlContenedorComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_pnlContenedorComponentRemoved
         lblCantBarberos.setText(String.valueOf(Integer.parseInt(lblCantBarberos.getText()) + 1));
     }//GEN-LAST:event_pnlContenedorComponentRemoved
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Nombres nombreGenerador = new Nombres();
+        String nombre;
+
+        if (new Random().nextInt(2) == 1) {
+            nombre = nombreGenerador.getNombreHombreAleatorio();
+            this.cbGender.setSelectedIndex(0);
+        } else {
+            nombre = nombreGenerador.getNombreMujerAleatorio();
+            this.cbGender.setSelectedIndex(1);
+        }
+        this.txtName.setText(nombre);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void variarCampos() {
+        this.txtName.setText("");
+        this.cbGender.setSelectedIndex(-1);
+    }
 
     public static void main(String args[]) {
         try {
