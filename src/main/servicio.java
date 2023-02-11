@@ -9,12 +9,17 @@ public class servicio extends javax.swing.JPanel {
 
     private int min;
     private int max;
+    private Cliente client;
 
-    public servicio(int min, int max) {
+    public servicio(int min, int max, Cliente client) {
         initComponents();
 
         this.min = min;
         this.max = max;
+        this.client = client;
+        
+        this.lblName.setText(client.getName());
+        this.lblGender.setText(client.getGender());
 
         new Thread(() -> {
             tiempoServicio();
@@ -29,6 +34,8 @@ public class servicio extends javax.swing.JPanel {
         lblTemp = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        lblName = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,6 +77,12 @@ public class servicio extends javax.swing.JPanel {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
+        lblName.setText("jLabel1");
+        jPanel1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 220, 30));
+
+        lblGender.setText("jLabel1");
+        jPanel1.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 220, 30));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 780, 280));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -102,22 +115,25 @@ public class servicio extends javax.swing.JPanel {
         this.lblTemp.setText("Servicio finalizado.");
         this.lblTemp.setForeground(Color.green);
         try {
-            Thread.sleep(5000);
+            Thread.sleep(2500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        
 //        System.out.println(this.getParent());
         Container contenedor = this.getParent();
         contenedor.remove(this);
         contenedor.revalidate();
         contenedor.repaint();
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblTemp;
     // End of variables declaration//GEN-END:variables
 }

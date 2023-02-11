@@ -14,8 +14,9 @@ public class FilaClientes {
         queue.add(e);
     }
 
-    public void remove(Cliente e) {
-        queue.remove(e);
+    public Cliente remove(Cliente e) {
+         Cliente client = queue.remove();
+         return client;
     }
 
     public Queue<Cliente> getQueue() {
