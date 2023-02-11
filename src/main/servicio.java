@@ -9,17 +9,17 @@ public class servicio extends javax.swing.JPanel {
 
     private int min;
     private int max;
-    private Cliente client;
+    private Cliente objCliente;
 
     public servicio(int min, int max, Cliente client) {
         initComponents();
 
         this.min = min;
         this.max = max;
-        this.client = client;
+        this.objCliente = client;
         
-        this.lblName.setText(client.getName());
-        this.lblGender.setText(client.getGender());
+        this.lblName.setText("Nombre: " + client.getName());
+        this.lblGender.setText("Genero: " + client.getGender());
 
         new Thread(() -> {
             tiempoServicio();
@@ -31,6 +31,7 @@ public class servicio extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         lblTemp = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -43,10 +44,16 @@ public class servicio extends javax.swing.JPanel {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTemp.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Cliente en servicio:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, 30));
+
+        lblTemp.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
+        lblTemp.setForeground(new java.awt.Color(255, 255, 255));
         lblTemp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTemp.setText("00:00 Segundos");
-        jPanel1.add(lblTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 780, 38));
+        jPanel1.add(lblTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 780, 38));
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -76,15 +83,19 @@ public class servicio extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
 
+        lblName.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblName.setForeground(new java.awt.Color(255, 255, 255));
         lblName.setText("jLabel1");
-        jPanel1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 220, 30));
+        jPanel1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 250, 30));
 
+        lblGender.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblGender.setForeground(new java.awt.Color(255, 255, 255));
         lblGender.setText("jLabel1");
-        jPanel1.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 220, 30));
+        jPanel1.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 250, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\garib\\OneDrive\\Escritorio\\fdf.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Barberia.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 280));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 780, 280));
@@ -100,8 +111,7 @@ public class servicio extends javax.swing.JPanel {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-//            System.out.println(formatter.format(i));
-            this.lblTemp.setText(formatter.format(i) + " Segundos");
+            this.lblTemp.setText("Tiempo restante de atencion: " + formatter.format(i) + " Segundos");
         }
         this.deleteService();
 
@@ -111,7 +121,6 @@ public class servicio extends javax.swing.JPanel {
         Random random = new Random();
 
         int randomNumber = random.nextInt((this.max - this.min) + 1) + this.min;
-        System.out.println("Numero aleatorio: " + randomNumber);
         return randomNumber;
     }
 
@@ -124,7 +133,6 @@ public class servicio extends javax.swing.JPanel {
             e.printStackTrace();
         }
         
-//        System.out.println(this.getParent());
         Container contenedor = this.getParent();
         contenedor.remove(this);
         contenedor.revalidate();
@@ -134,6 +142,7 @@ public class servicio extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
