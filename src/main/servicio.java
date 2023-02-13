@@ -27,7 +27,7 @@ public class Servicio extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         pnlContenedor = new javax.swing.JPanel();
@@ -78,7 +78,7 @@ public class Servicio extends javax.swing.JPanel {
         pnlContenedor.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 280));
 
         add(pnlContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 780, 280));
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     public void tiempoServicio() {
         int timeLimit = randomTimer();
@@ -119,7 +119,7 @@ public class Servicio extends javax.swing.JPanel {
     }
     
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel lblBarbero;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblClienteServicio;
@@ -128,5 +128,5 @@ public class Servicio extends javax.swing.JPanel {
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTiempo;
     private javax.swing.JPanel pnlContenedor;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

@@ -7,10 +7,14 @@ import javax.swing.SpinnerNumberModel;
 
 public class Barberia extends javax.swing.JFrame {
 
-    private FilaClientes fila = new FilaClientes();
+    private FilaClientes filaClientes;
+    private FilaPanelCliente filaPanelCliente;
 
     public Barberia() {
         initComponents();
+
+        this.filaClientes = new FilaClientes();
+        this.filaPanelCliente = new FilaPanelCliente();
     }
 
     @SuppressWarnings("unchecked")
@@ -45,8 +49,12 @@ public class Barberia extends javax.swing.JFrame {
         lblConfiguracion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlContenedorServicios = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        pnlContenedorFila = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlContenedorBotones.setBackground(new java.awt.Color(255, 204, 204));
@@ -183,7 +191,7 @@ public class Barberia extends javax.swing.JFrame {
 
         pnlContenedorBotones.add(pnlConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 360, 40));
 
-        getContentPane().add(pnlContenedorBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 400, 700));
+        getContentPane().add(pnlContenedorBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 0, 400, 700));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -198,26 +206,52 @@ public class Barberia extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        pnlContenedorFila.setBackground(new java.awt.Color(255, 255, 255));
+        pnlContenedorFila.setLayout(new javax.swing.BoxLayout(pnlContenedorFila, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane3.setViewportView(pnlContenedorFila);
+
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 180, 650));
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Fila de Clientes");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 180, 50));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        if (fila.getQueue().isEmpty()) {
+        if (filaClientes.getQueue().isEmpty()) {
             return;
         }
         if (Integer.parseInt(lblCantBarberos.getText()) < 1) {
             return;
         }
+        this.aniadirClienteServicio();
+        this.eliminarClienteFila();
+        this.actualizarLayoutServicios();
 
-        Cliente client = fila.getQueue().remove();
+        lblCantClientes.setText(String.valueOf(filaClientes.getQueue().size()));
+        lblCantBarberos.setText(String.valueOf(Integer.parseInt(lblCantBarberos.getText()) - 1));
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    public void aniadirClienteServicio() {
+        Cliente client = filaClientes.getQueue().remove();
         pnlContenedorServicios.add(new Servicio((int) spnMin.getValue(), (int) spnMax.getValue(), client));
         pnlContenedorServicios.revalidate();
         pnlContenedorServicios.repaint();
+    }
 
-        lblCantClientes.setText(String.valueOf(fila.getQueue().size()));
-        lblCantBarberos.setText(String.valueOf(Integer.parseInt(lblCantBarberos.getText()) - 1));
+    public void eliminarClienteFila() {
+        pnlContenedorFila.remove(filaPanelCliente.getQueue().remove());
+        pnlContenedorFila.revalidate();
+        pnlContenedorFila.repaint();
+    }
 
+    public void actualizarLayoutServicios() {
         int componentes = pnlContenedorServicios.getComponentCount();
         if (componentes < 3) {
             GridLayout layout = new GridLayout(pnlContenedorServicios.getComponentCount() + 1, 1);
@@ -228,19 +262,48 @@ public class Barberia extends javax.swing.JFrame {
             jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             pnlContenedorServicios.setLayout(layout);
         }
+    }
 
-    }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnAniadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAniadirActionPerformed
-        Cliente cliente = new Cliente();
+        if(this.camposVacios()){
+            return;
+        }
+        Cliente objCliente = crearCliente();
+        
+        this.aniadirClienteFila(objCliente);
+        this.filaClientes.getQueue().add(objCliente);
 
-        cliente.setNombre(this.txtNombre.getText());
-        cliente.setSexo(this.cbSexo.getSelectedItem().toString());
-        fila.getQueue().add(cliente);
-
-        lblCantClientes.setText(String.valueOf(fila.getQueue().size()));
-        this.variarCampos();
+        this.lblCantClientes.setText(String.valueOf(filaClientes.getQueue().size()));
+        this.vaciarCampos();
     }//GEN-LAST:event_btnAniadirActionPerformed
+
+    private Cliente crearCliente() {
+        Cliente objCliente = new Cliente();
+        objCliente.setNombre(this.txtNombre.getText());
+        objCliente.setSexo(this.cbSexo.getSelectedItem().toString());
+
+        return objCliente;
+    }
+
+    private void aniadirClienteFila(Cliente objCliente) {
+        PanelCliente pbjPanelCliente = new PanelCliente(objCliente);
+        filaPanelCliente.getQueue().add(pbjPanelCliente);
+        pnlContenedorFila.add(pbjPanelCliente);
+        pnlContenedorFila.revalidate();
+        pnlContenedorFila.repaint();
+    }
+    
+    private boolean camposVacios(){
+        if(this.txtNombre.getText().isEmpty()){
+            return true;
+        }
+        if(this.cbSexo.getSelectedIndex() == -1){
+            return true;
+        }
+        return false;
+    }
+
 
     private void btnAniadirBarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAniadirBarberoActionPerformed
         int cantidadPeluqueros = Integer.parseInt(lblCantBarberos.getText()) + 1;
@@ -265,7 +328,7 @@ public class Barberia extends javax.swing.JFrame {
         this.txtNombre.setText(nombre);
     }//GEN-LAST:event_btnDatosActionPerformed
 
-    private void variarCampos() {
+    private void vaciarCampos() {
         this.txtNombre.setText("");
         this.cbSexo.setSelectedIndex(-1);
     }
@@ -301,7 +364,9 @@ public class Barberia extends javax.swing.JFrame {
     private javax.swing.JButton btnDatos;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JComboBox<String> cbSexo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblCantBarberos;
     private javax.swing.JLabel lblCantClientes;
     private javax.swing.JLabel lblCantidadBarberos;
@@ -315,6 +380,7 @@ public class Barberia extends javax.swing.JFrame {
     private javax.swing.JPanel pnlCliente;
     private javax.swing.JPanel pnlConfiguracion;
     private javax.swing.JPanel pnlContenedorBotones;
+    private javax.swing.JPanel pnlContenedorFila;
     private javax.swing.JPanel pnlContenedorServicios;
     private javax.swing.JPanel pnlMax;
     private javax.swing.JPanel pnlMin;
