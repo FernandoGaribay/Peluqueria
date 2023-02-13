@@ -2,41 +2,41 @@ package main;
 
 public class Cliente {
 
-    private String name;
-    private String gender;
+    private String nombre;
+    private String sexo;
 
     public Cliente() {
-        this.name = "";
-        this.gender = "";
+        this.nombre = "";
+        this.sexo = "";
     }
 
     public Cliente(String name, String gender) {
-        this.name = name;
-        this.gender = gender;
+        this.nombre = name;
+        this.sexo = gender;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getGender() {
-        return gender;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("cliente{");
-        sb.append("name=").append(name);
-        sb.append(", gender=").append(gender);
+        sb.append("name=").append(nombre);
+        sb.append(", gender=").append(sexo);
         sb.append('}');
         return sb.toString();
     }

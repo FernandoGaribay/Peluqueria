@@ -5,21 +5,21 @@ import java.awt.Container;
 import java.text.DecimalFormat;
 import java.util.Random;
 
-public class servicio extends javax.swing.JPanel {
+public class Servicio extends javax.swing.JPanel {
 
     private int min;
     private int max;
     private Cliente objCliente;
 
-    public servicio(int min, int max, Cliente client) {
+    public Servicio(int min, int max, Cliente cliente) {
         initComponents();
 
         this.min = min;
         this.max = max;
-        this.objCliente = client;
+        this.objCliente = cliente;
         
-        this.lblName.setText("Nombre: " + client.getName());
-        this.lblGender.setText("Genero: " + client.getGender());
+        this.lblNombre.setText("Nombre: " + cliente.getNombre());
+        this.lblSexo.setText("Genero: " + cliente.getSexo());
 
         new Thread(() -> {
             tiempoServicio();
@@ -30,75 +30,54 @@ public class servicio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        lblTemp = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        lblName = new javax.swing.JLabel();
-        lblGender = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        pnlContenedor = new javax.swing.JPanel();
+        lblCliente = new javax.swing.JLabel();
+        lblBarbero = new javax.swing.JLabel();
+        lblClienteServicio = new javax.swing.JLabel();
+        lblTiempo = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblSexo = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Cliente en servicio:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, 30));
+        lblCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Cliente.png"))); // NOI18N
+        pnlContenedor.add(lblCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 200, 220));
 
-        lblTemp.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
-        lblTemp.setForeground(new java.awt.Color(255, 255, 255));
-        lblTemp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTemp.setText("00:00 Segundos");
-        jPanel1.add(lblTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 780, 38));
+        lblBarbero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Barbero.png"))); // NOI18N
+        pnlContenedor.add(lblBarbero, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 150, 220));
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
+        lblClienteServicio.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
+        lblClienteServicio.setForeground(new java.awt.Color(255, 255, 255));
+        lblClienteServicio.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblClienteServicio.setText("Cliente en servicio:");
+        pnlContenedor.add(lblClienteServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 250, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        lblTiempo.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
+        lblTiempo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTiempo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTiempo.setText("Tiempo restante: 00:00 Segundos");
+        pnlContenedor.add(lblTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, -1));
+        lblNombre.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblNombre.setText("Fernando");
+        pnlContenedor.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 250, 30));
 
-        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
+        lblSexo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblSexo.setForeground(new java.awt.Color(255, 255, 255));
+        lblSexo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblSexo.setText("Hombre");
+        pnlContenedor.add(lblSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 250, 20));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Barberia.png"))); // NOI18N
+        pnlContenedor.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 280));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
-
-        lblName.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        lblName.setForeground(new java.awt.Color(255, 255, 255));
-        lblName.setText("jLabel1");
-        jPanel1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 250, 30));
-
-        lblGender.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        lblGender.setForeground(new java.awt.Color(255, 255, 255));
-        lblGender.setText("jLabel1");
-        jPanel1.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 250, 30));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Barberia.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 280));
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 780, 280));
+        add(pnlContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 780, 280));
     }// </editor-fold>//GEN-END:initComponents
 
     public void tiempoServicio() {
@@ -111,7 +90,7 @@ public class servicio extends javax.swing.JPanel {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            this.lblTemp.setText("Tiempo restante de atencion: " + formatter.format(i) + " Segundos");
+            this.lblTiempo.setText("Tiempo restante: " + formatter.format(i) + " Segundos");
         }
         this.deleteService();
 
@@ -125,8 +104,8 @@ public class servicio extends javax.swing.JPanel {
     }
 
     public void deleteService() {
-        this.lblTemp.setText("Servicio finalizado.");
-        this.lblTemp.setForeground(Color.green);
+        this.lblTiempo.setText("Servicio finalizado.");
+        this.lblTiempo.setForeground(Color.green);
         try {
             Thread.sleep(2500);
         } catch (InterruptedException e) {
@@ -141,13 +120,13 @@ public class servicio extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblGender;
-    private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblTemp;
+    private javax.swing.JLabel lblBarbero;
+    private javax.swing.JLabel lblCliente;
+    private javax.swing.JLabel lblClienteServicio;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblSexo;
+    private javax.swing.JLabel lblTiempo;
+    private javax.swing.JPanel pnlContenedor;
     // End of variables declaration//GEN-END:variables
 }
