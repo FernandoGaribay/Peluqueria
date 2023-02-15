@@ -240,7 +240,7 @@ public class Barberia extends javax.swing.JFrame {
 
     public void aniadirClienteServicio() {
         Cliente client = filaClientes.getQueue().remove();
-        pnlContenedorServicios.add(new Servicio((int) spnMin.getValue(), (int) spnMax.getValue(), client));
+        pnlContenedorServicios.add(new vtnServicio((int) spnMin.getValue(), (int) spnMax.getValue(), client));
         pnlContenedorServicios.revalidate();
         pnlContenedorServicios.repaint();
     }

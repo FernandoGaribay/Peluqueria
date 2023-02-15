@@ -21,9 +21,10 @@ public class PanelCliente extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblContenedor.setBackground(new java.awt.Color(200, 227, 255));
         lblContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\garib\\OneDrive\\Escritorio\\ClienteFace.png")); // NOI18N
+        lblCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ClienteFace.png"))); // NOI18N
         lblContenedor.add(lblCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 100));
 
         lblNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
